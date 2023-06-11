@@ -1,0 +1,48 @@
+{
+  "type" : "record",
+  "name" : "Universe",
+  "namespace" : "com.pojo.delta",
+  "fields" : [ {
+    "name" : "numberOfPlanets",
+    "type" : [ "null", {
+      "type" : "long",
+      "java-class" : "java.lang.Long"
+    } ]
+  }, {
+    "name" : "planets",
+    "type" : [ "null", {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "Planet",
+        "fields" : [ {
+          "name" : "details",
+          "type" : [ "null", {
+            "type" : "record",
+            "name" : "Details",
+            "namespace" : "com.pojo.delta.common",
+            "fields" : [ ]
+          } ]
+        }, {
+          "name" : "distanceFromSun",
+          "type" : [ "null", {
+            "type" : "long",
+            "java-class" : "java.lang.Long"
+          } ]
+        }, {
+          "name" : "numberOfMoons",
+          "type" : [ "null", {
+            "type" : "int",
+            "java-class" : "java.lang.Integer"
+          } ]
+        }, {
+          "name" : "planetName",
+          "type" : [ "null", "string" ]
+        }, {
+          "name" : "planetSize",
+          "type" : [ "null", "string" ]
+        } ]
+      }
+    } ]
+  } ]
+}
