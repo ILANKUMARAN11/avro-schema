@@ -18,7 +18,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <com.fasterxml.jackson>2.15.2</com.fasterxml.jackson>
-        <swagger>2.10.0</swagger>
+        <swagger.version>3.0.0</swagger.version>
         <lombok.version>1.18.28</lombok.version>
     </properties>
 

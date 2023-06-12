@@ -23,7 +23,7 @@ public class FileUtils {
                     String packageName = getPackageName(f);
                     String className = getClassName(f);
 
-                    if (!packageName.startsWith(nameSpacePrefix) || packageName.startsWith(nameSpacePrefix)) {
+                    if (!packageName.startsWith(nameSpacePrefix)) {
                         if (directoryMapping.containsKey(packageName)) {
                             List<String> existingPath = directoryMapping.get(packageName);
                             existingPath.add(className);
