@@ -67,6 +67,7 @@
     <build>
         <plugins>
 
+            <!-- Hi Ilan this is your plugin STARTS-->
             <plugin>
                 <groupId>org.avro.schema</groupId>
                 <artifactId>avro-schema-plugin</artifactId>
@@ -78,10 +79,10 @@
                             <goal>avro-schema</goal>
                         </goals>
                         <configuration>
-                            <sourceDirectory>${project.basedir}/target/classes/</sourceDirectory>
+                            <sourceDirectory>${project.basedir}/target/classes/,</sourceDirectory>
                             <outputDirectory>${project.basedir}/src/main/resources/</outputDirectory>
                             <extension>avsc</extension>
-                            <nameSpacePrefix>com</nameSpacePrefix>
+                            <nameSpacePrefix>avro</nameSpacePrefix>
                             <nameSpaceSuffix>delta</nameSpaceSuffix>
                             <excludes>
                                 <exclude>**/*.avro</exclude>
@@ -91,6 +92,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Hi Ilan this is your plugin END-->
 
             <plugin>
                 <groupId>org.apache.avro</groupId>
@@ -115,7 +117,6 @@
             </plugin>
 
         </plugins>
-
 
 
     </build>

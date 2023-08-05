@@ -18,6 +18,7 @@ import java.net.URLClassLoader;
 import java.security.CodeSource;
 import java.security.ProtectionDomain;
 import java.util.*;
+import java.util.stream.Stream;
 
 
 @Slf4j
@@ -57,41 +58,46 @@ public class GenerateSchemaMojo extends AbstractMojo {
 //                    .setExcludes(StringUtils.join(excludes.iterator(), ":"));
 //        }
         SchemaGenerator schemaGenerator = new SchemaGenerator();
+        Stream<String> sourceDirectories = Arrays.stream(sourceDirectory.split(","));
 
-        File file = new File(sourceDirectory);
-        Map<String, List<String>> directoryMapping = new HashMap<>();
-        FileUtils.getAllFiles(file, directoryMapping, nameSpacePrefix);
-        try {
-            // Convert File to a URL
-            URL url = file.toURI().toURL();          // file:/c:/myclasses/
-            URL[] urls = new URL[]{url};
+        sourceDirectories
+                .filter(sourceDirectory -> Objects.nonNull(sourceDirectory) && sourceDirectory.length()>0)
+                .forEach(sourceDirectory -> {
+                    File file = new File(sourceDirectory);
+                    Map<String, List<String>> directoryMapping = new HashMap<>();
+                    FileUtils.getAllFiles(file, directoryMapping, nameSpacePrefix);
+                    try {
+                        // Convert File to a URL
+                        URL url = file.toURI().toURL();          // file:/c:/myclasses/
+                        URL[] urls = new URL[]{url};
 
-            // Create a new class loader with the directory
-            ClassLoader cl = new URLClassLoader(urls);
-            // Load in the class; MyClass.class should be located in
-            // the directory file:/c:/myclasses/com/mycompany
+                        // Create a new class loader with the directory
+                        ClassLoader cl = new URLClassLoader(urls);
+                        // Load in the class; MyClass.class should be located in
+                        // the directory file:/c:/myclasses/com/mycompany
 
-            for (Map.Entry<String, List<String>> entry : directoryMapping.entrySet()) {
-                String key = entry.getKey();
-                log.info("Generating schema for Package ::: {}", key);
-                List<String> value = entry.getValue();
-                for (String className : value) {
-                    Class<?> cls = cl.loadClass(className);
-                    log.info("Generating schema for Class :: {}", className);
-                    schemaGenerator.createAvroSchemaFromClass(cls, null, extension, nameSpacePrefix, nameSpaceSuffix, outputDirectory);
-                    ProtectionDomain pDomain = cls.getProtectionDomain();
-                    CodeSource cSource = pDomain.getCodeSource();
-                    URL urlfrom = cSource.getLocation();
-                    log.debug("URL from file :: {}", urlfrom.getFile());
-                }
-            }
-        } catch (MalformedURLException e) {
-            log.error("MalformedURLException :: {}", e.getMessage());
-        } catch (ClassNotFoundException e) {
-            log.error("ClassNotFoundException :: {}", e.getMessage());
-        } catch (IOException e) {
-            log.error("IOException :: {}", e.getMessage());
-        }
+                        for (Map.Entry<String, List<String>> entry : directoryMapping.entrySet()) {
+                            String key = entry.getKey();
+                            log.info("Generating schema for Package ::: {}", key);
+                            List<String> value = entry.getValue();
+                            for (String className : value) {
+                                Class<?> cls = cl.loadClass(className);
+                                log.info("Generating schema for Class :: {}", className);
+                                schemaGenerator.createAvroSchemaFromClass(cls, null, extension, nameSpacePrefix, nameSpaceSuffix, outputDirectory);
+                                ProtectionDomain pDomain = cls.getProtectionDomain();
+                                CodeSource cSource = pDomain.getCodeSource();
+                                URL urlfrom = cSource.getLocation();
+                                log.debug("URL from file :: {}", urlfrom.getFile());
+                            }
+                        }
+                    } catch (MalformedURLException e) {
+                        log.error("MalformedURLException :: {}", e.getMessage());
+                    } catch (ClassNotFoundException e) {
+                        log.error("ClassNotFoundException :: {}", e.getMessage());
+                    } catch (IOException e) {
+                        log.error("IOException :: {}", e.getMessage());
+                    }
+                });
     }
 
 
