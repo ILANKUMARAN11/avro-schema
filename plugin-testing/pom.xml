@@ -83,7 +83,6 @@
                             <outputDirectory>${project.basedir}/src/main/resources/</outputDirectory>
                             <extension>avsc</extension>
                             <nameSpacePrefix>avro</nameSpacePrefix>
-                            <nameSpaceSuffix>delta</nameSpaceSuffix>
                             <excludes>
                                 <exclude>**/*.avro</exclude>
                                 <exclude>**/*.avsc</exclude>

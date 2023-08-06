@@ -53,7 +53,7 @@ public class SchemaGeneratorTest {
     @DisplayName("avro extension generate ")
     public void generateAvro() throws IOException, ClassNotFoundException {
         SchemaGenerator schemaGenerator = new SchemaGenerator();
-        schemaGenerator.createAvroSchemaFromClass(Employee.class, avroMapper, AVRO_EXTENSION, "avro", null, testResource);
+        schemaGenerator.createAvroSchemaFromClass(Employee.class, avroMapper, AVRO_EXTENSION, "avro", testResource);
         Assertions.assertTrue(getFileNameFromClass(Employee.class, AVRO_EXTENSION));
     }
 
@@ -61,9 +61,9 @@ public class SchemaGeneratorTest {
     @DisplayName("avsc extension generate ")
     public void generateAvsc() throws IOException {
         SchemaGenerator schemaGenerator = new SchemaGenerator();
-        schemaGenerator.createAvroSchemaFromClass(Universe.class, avroMapper, AVSC_EXTENSION, "avro", null, testResource);
-        schemaGenerator.createAvroSchemaFromClass(Earth.class, avroMapper, AVSC_EXTENSION, "avro", null, testResource);
-        schemaGenerator.createAvroSchemaFromClass(Mars.class, avroMapper, AVSC_EXTENSION, "avro", null, testResource);
+        schemaGenerator.createAvroSchemaFromClass(Universe.class, avroMapper, AVSC_EXTENSION, "avro", testResource);
+        schemaGenerator.createAvroSchemaFromClass(Earth.class, avroMapper, AVSC_EXTENSION, "avro", testResource);
+        schemaGenerator.createAvroSchemaFromClass(Mars.class, avroMapper, AVSC_EXTENSION, "avro", testResource);
 
         Assertions.assertTrue(getFileNameFromClass(Universe.class, AVSC_EXTENSION));
         Assertions.assertTrue(getFileNameFromClass(Earth.class, AVSC_EXTENSION));

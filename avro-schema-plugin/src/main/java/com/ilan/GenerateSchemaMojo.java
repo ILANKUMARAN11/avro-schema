@@ -31,10 +31,6 @@ public class GenerateSchemaMojo extends AbstractMojo {
 
     @Parameter(property = "nameSpacePrefix", defaultValue = "avro")
     private String nameSpacePrefix;
-
-    @Parameter(property = "nameSpaceSuffix")
-    private String nameSpaceSuffix;
-
     @Parameter(property = "outputDirectory", defaultValue = "${project.basedir}/src/main/resources/")
     private String outputDirectory;
 
@@ -48,7 +44,6 @@ public class GenerateSchemaMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
         log.info("extension ::: {}", extension);
         log.info("nameSpacePrefix ::: {}", nameSpacePrefix);
-        log.info("nameSpaceSuffix ::: {}", nameSpaceSuffix);
         log.info("sourceDirectory ::: {}", sourceDirectory);
         log.info("outputDirectory ::: {}", outputDirectory);
         log.info("excludes size ::: {}, excludes list :::  {}", excludes.size(), excludes);
@@ -83,7 +78,7 @@ public class GenerateSchemaMojo extends AbstractMojo {
                             for (String className : value) {
                                 Class<?> cls = cl.loadClass(className);
                                 log.info("Generating schema for Class :: {}", className);
-                                schemaGenerator.createAvroSchemaFromClass(cls, null, extension, nameSpacePrefix, nameSpaceSuffix, outputDirectory);
+                                schemaGenerator.createAvroSchemaFromClass(cls, null, extension, nameSpacePrefix, outputDirectory);
                                 ProtectionDomain pDomain = cls.getProtectionDomain();
                                 CodeSource cSource = pDomain.getCodeSource();
                                 URL urlfrom = cSource.getLocation();

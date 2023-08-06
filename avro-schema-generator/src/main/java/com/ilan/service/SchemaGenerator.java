@@ -30,7 +30,7 @@ public class SchemaGenerator {
             .addModule(new AvroJavaTimeModule())
             .build();
 
-    public void createAvroSchemaFromClass(Class<?> clazz, AvroMapper avroMapper, String extension, String nameSpacePrefix, String nameSpaceSuffix, String outputDirectory) throws IOException {
+    public void createAvroSchemaFromClass(Class<?> clazz, AvroMapper avroMapper, String extension, String nameSpacePrefix, String outputDirectory) throws IOException {
         AvroSchemaGenerator gen = new AvroSchemaGenerator();
         gen.enableLogicalTypes();
         if (Objects.nonNull(avroMapper)) {
@@ -43,15 +43,8 @@ public class SchemaGenerator {
         String avroSchemaInJSON = avroSchema.toString(Boolean.TRUE);
 
         String actualNameSpace = avroSchema.getNamespace();
-        String prefixNameSpace = nameSpacePrefix + SchemaConstant.PACKAGE_SPLITTER;
-        String suffixNameSpace = SchemaConstant.PACKAGE_SPLITTER + nameSpaceSuffix;
-
         log.info("user has the config package prefix as :: {}" + nameSpacePrefix);
-        String overrideNameSpace = prefixNameSpace + avroSchema.getNamespace();
-
-        if (Objects.nonNull(nameSpaceSuffix) && !StringUtils.isEmpty(nameSpaceSuffix)) {
-            overrideNameSpace = overrideNameSpace + suffixNameSpace;
-        }
+        String overrideNameSpace = nameSpacePrefix + SchemaConstant.PACKAGE_SPLITTER + avroSchema.getNamespace();
 
         org.apache.avro.Schema schemaInAvroNameSpace = new Schema
                 .Parser()
