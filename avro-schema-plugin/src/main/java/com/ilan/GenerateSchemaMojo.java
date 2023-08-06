@@ -49,8 +49,8 @@ public class GenerateSchemaMojo extends AbstractMojo {
         log.info("extension ::: {}", extension);
         log.info("nameSpacePrefix ::: {}", nameSpacePrefix);
         log.info("nameSpaceSuffix ::: {}", nameSpaceSuffix);
-        log.info("outputDirectory ::: {}", outputDirectory);
         log.info("sourceDirectory ::: {}", sourceDirectory);
+        log.info("outputDirectory ::: {}", outputDirectory);
         log.info("excludes size ::: {}, excludes list :::  {}", excludes.size(), excludes);
 
 //        if (excludes != null && !excludes.isEmpty()) {
@@ -61,7 +61,7 @@ public class GenerateSchemaMojo extends AbstractMojo {
         Stream<String> sourceDirectories = Arrays.stream(sourceDirectory.split(","));
 
         sourceDirectories
-                .filter(sourceDirectory -> Objects.nonNull(sourceDirectory) && sourceDirectory.length()>0)
+                .filter(sourceDirectory -> Objects.nonNull(sourceDirectory) && sourceDirectory.length() > 0)
                 .forEach(sourceDirectory -> {
                     File file = new File(sourceDirectory);
                     Map<String, List<String>> directoryMapping = new HashMap<>();
