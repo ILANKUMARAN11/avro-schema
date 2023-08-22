@@ -1,6 +1,0 @@
-{
-  "type" : "record",
-  "name" : "Details",
-  "namespace" : "com.pojo.common.delta",
-  "fields" : [ ]
-}

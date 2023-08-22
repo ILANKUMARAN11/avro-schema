@@ -1,5 +1,7 @@
-#*.avro
-#*.avsc
+*/src/test/resources/*.avro
+*/src/test/resources/*.avsc
+*/src/main/resources/*.avro
+*/src/main/resources/*.avsc
 # Created by https://www.gitignore.io/api/eclipse,intellij
 # Edit at https://www.gitignore.io/?templates=eclipse,intellij
 
