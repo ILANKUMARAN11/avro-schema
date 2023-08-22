@@ -2,7 +2,12 @@
 <build>
     <plugins>
 
-        <!-- Hi Ilan this is your plugin STARTS-->
+        <!-- 
+           1) The plugins are required to be in order as shown here. 
+           2) Phase of the both the plugin should be in compile phase.
+        -->
+
+        <!-- This converts the java file to avsc file and puts it in resource folder-->
         <plugin>
             <groupId>com.ilan.schema</groupId>
             <artifactId>avro-schema-plugin</artifactId>
@@ -27,7 +32,7 @@
             </executions>
         </plugin>
         
-        <!-- Hi Ilan this is your plugin END-->
+        <!-- This converts avsc file to avro java serialized file-->
         <plugin>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro-maven-plugin</artifactId>
