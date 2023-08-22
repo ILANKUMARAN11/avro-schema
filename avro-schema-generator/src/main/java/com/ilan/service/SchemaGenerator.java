@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.Schema;
 import org.springframework.util.StringUtils;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -52,7 +54,9 @@ public class SchemaGenerator {
 
         log.info("outputDirectory {}", outputDirectory);
         //Write to File
-        Path fileName = Path.of(outputDirectory + clazz.getSimpleName() + SchemaConstant.EXTENSION_SPLITTER + extension);
-        Files.writeString(fileName, schemaInAvroNameSpace.toString(Boolean.TRUE));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputDirectory + clazz.getSimpleName() + SchemaConstant.EXTENSION_SPLITTER + extension));
+        writer.write(schemaInAvroNameSpace.toString(Boolean.TRUE));
+        writer.close();
+
     }
 }
