@@ -20,9 +20,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>org.avro.schema</groupId>
+            <groupId>com.ilan.schema</groupId>
             <artifactId>avro-schema-generator</artifactId>
-            <version>${project.version}</version>
+            <version>0.0.1</version>
         </dependency>
 
         <dependency>
