@@ -39,14 +39,26 @@ public class FileUtils {
     }
 
     public static String getPackageName(File f) {
-        String folderParent = f.getParent().replace("\\", PACKAGE_SPLITTER);
+        String folderParent = null;
+        if(f.getParent().indexOf("\\")>=0){
+            folderParent = f.getParent().replace("\\", PACKAGE_SPLITTER);
+        } else if(f.getParent().indexOf("/")>=0){
+            folderParent = f.getParent().replace("/", PACKAGE_SPLITTER);
+        }
+        log.info(f.getParent() + " :: " + folderParent);
         int indexOfTarget = folderParent.indexOf("target.classes.") + 15;
         String packageName = folderParent.substring(indexOfTarget);
         return packageName;
     }
 
     public static String getClassName(File f) {
-        String absolutePath = f.getAbsolutePath().replace("\\", PACKAGE_SPLITTER);
+        String absolutePath = null;
+        if(f.getAbsolutePath().indexOf("\\")>=0){
+            absolutePath = f.getAbsolutePath().replace("\\", PACKAGE_SPLITTER);
+        }else if(f.getAbsolutePath().indexOf("/")>=0){
+            absolutePath = f.getAbsolutePath().replace("/", PACKAGE_SPLITTER);
+        }
+
         log.debug(f.getName() + " :: " + absolutePath);
         int indexOfTarget = absolutePath.indexOf("target.classes.") + 15;
         String packageWithClass = absolutePath.substring(indexOfTarget);

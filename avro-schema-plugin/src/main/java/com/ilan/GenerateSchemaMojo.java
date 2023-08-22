@@ -42,6 +42,7 @@ public class GenerateSchemaMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
+        log.info("OS name -> " + System. getProperty("os.name"));
         log.info("extension ::: {}", extension);
         log.info("nameSpacePrefix ::: {}", nameSpacePrefix);
         log.info("sourceDirectory ::: {}", sourceDirectory);
