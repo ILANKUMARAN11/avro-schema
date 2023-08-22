@@ -84,8 +84,8 @@
                             <extension>avsc</extension>
                             <nameSpacePrefix>avro</nameSpacePrefix>
                             <excludes>
-                                <exclude>**/*.avro</exclude>
-                                <exclude>**/*.avsc</exclude>
+                                <exclude>**/*.java</exclude>
+                                <exclude>**/*.java</exclude>
                             </excludes>
                         </configuration>
                     </execution>

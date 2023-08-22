@@ -6,7 +6,7 @@
         <plugin>
             <groupId>com.ilan.schema</groupId>
             <artifactId>avro-schema-plugin</artifactId>
-            <version>${project.version}</version>
+            <version>0.0.1</version>
             <executions>
                 <execution>
                     <phase>compile</phase>
@@ -19,8 +19,8 @@
                         <extension>avsc</extension>
                         <nameSpacePrefix>avro</nameSpacePrefix>
                         <excludes>
-                            <exclude>**/*.avro</exclude>
-                            <exclude>**/*.avsc</exclude>
+                            <exclude>**/*.java</exclude>
+                            <exclude>**/*.java</exclude>
                         </excludes>
                     </configuration>
                 </execution>
