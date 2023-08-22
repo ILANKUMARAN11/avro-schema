@@ -7,7 +7,7 @@
     <groupId>com.ilan.schema</groupId>
     <artifactId>PojoToAvro-AvroToPojo</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>PojoToAvro-AvroToPojo</name>
     <description>Demo project Kafka Consumer</description>
 
